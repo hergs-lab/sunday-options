@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>A Serious Proposal for Sunday</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #faf8f4;
+    --ink: #1a1916;
+    --ink-2: #4a4844;
+    --ink-3: #8a8784;
+    --ink-4: #c4c2be;
+    --border: rgba(26,25,22,0.1);
+    --border-strong: rgba(26,25,22,0.2);
+    --surface: #fff;
+    --surface-2: #f4f2ee;
+    --green: #1D9E75;
+    --green-light: #E1F5EE;
+    --green-dark: #085041;
+    --purple-light: #EEEDFE;
+    --purple-dark: #3C3489;
+    --purple-border: #CECBF6;
+    --blue-light: #E6F1FB;
+    --blue-dark: #0C447C;
+    --blue-border: #B5D4F4;
+    --amber-light: #FAEEDA;
+    --amber-dark: #633806;
+    --amber-border: #FAC775;
+    --teal-light: #EAF3DE;
+    --teal-dark: #3B6D11;
+    --teal-border: #C0DD97;
+    --red: #E24B4A;
+  }
+
+  html { background: var(--cream); color: var(--ink); }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 6rem;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    text-align: center;
+    padding: 3rem 1rem 3.5rem;
+    border-bottom: 0.5px solid var(--border);
+    margin-bottom: 3rem;
+  }
+  .hero-tag {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 1rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 6vw, 52px);
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+  .hero h1 em { font-style: italic; font-weight: 400; }
+  .hero-sub {
+    font-size: 14px;
+    color: var(--ink-2);
+    max-width: 440px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  .hero-methodology {
+    font-size: 11px;
+    color: var(--ink-4);
+    margin-top: 1rem;
+    letter-spacing: 0.04em;
+    font-style: italic;
+  }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 3.5rem; }
+  .section-divider {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    padding-bottom: 8px;
+    border-bottom: 0.5px solid var(--border);
+    margin-bottom: 1rem;
+  }
+  .section-header { margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 0.5px solid var(--border); }
+  .section-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 5px; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 500; }
+  .section-subtitle { font-size: 13px; color: var(--ink-3); margin-top: 4px; line-height: 1.6; }
+
+  /* ── VENUE CARDS ── */
+  .venue-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 14px;
+    padding: 1.4rem 1.6rem;
+    margin-bottom: 10px;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+  .venue-card:hover { border-color: var(--border-strong); }
+  .venue-card.featured { border: 1.5px solid var(--green); }
+  .featured-badge {
+    position: absolute;
+    top: -11px;
+    left: 1.4rem;
+    background: var(--green);
+    color: var(--green-light);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    padding: 3px 12px;
+    border-radius: 20px;
+  }
+  .card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 0.6rem; gap: 12px; }
+  .venue-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 500; line-height: 1.2; }
+  .venue-area { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
+  .drive-pills { display: flex; flex-direction: column; gap: 4px; flex-shrink: 0; align-items: flex-end; }
+  .drive-pill { font-size: 11px; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+  .pill-leichhardt { background: var(--purple-light); color: var(--purple-dark); border: 0.5px solid var(--purple-border); }
+  .pill-gosford { background: var(--blue-light); color: var(--blue-dark); border: 0.5px solid var(--blue-border); }
+  .hours-row { display: flex; align-items: center; gap: 8px; margin-bottom: 0.8rem; flex-wrap: wrap; }
+  .hours-chip {
+    font-size: 12px; color: var(--ink-2);
+    background: var(--surface-2); border: 0.5px solid var(--border);
+    border-radius: 20px; padding: 3px 11px;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .hours-note { font-size: 11px; color: var(--ink-3); font-style: italic; }
+  .card-pitch { font-size: 13px; color: var(--ink-2); line-height: 1.7; margin-bottom: 1rem; font-style: italic; }
+  .card-facts { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 1.1rem; }
+  .chip {
+    font-size: 12px; padding: 4px 11px; border-radius: 20px;
+    border: 0.5px solid var(--border); color: var(--ink-2);
+    display: flex; align-items: center; gap: 4px;
+  }
+  .chip-pool { background: var(--teal-light); color: var(--teal-dark); border-color: var(--teal-border); }
+  .chip-vibe { background: var(--purple-light); color: var(--purple-dark); border-color: var(--purple-border); }
+  .chip-food { background: var(--amber-light); color: var(--amber-dark); border-color: var(--amber-border); }
+  .chip-water { background: var(--blue-light); color: var(--blue-dark); border-color: var(--blue-border); }
+  .card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 0.8rem; border-top: 0.5px solid var(--border); gap: 12px; }
+  .expert-panel { display: flex; flex-direction: column; gap: 5px; }
+  .expert-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
+  .expert-reviews { display: flex; gap: 7px; }
+  .expert-review {
+    display: flex; align-items: center; gap: 6px;
+    padding: 5px 11px; border-radius: 8px;
+    border: 0.5px solid var(--border); background: var(--surface-2);
+  }
+  .expert-dog { font-size: 14px; }
+  .expert-meta { display: flex; flex-direction: column; line-height: 1.2; }
+  .expert-dog-name { font-size: 10px; color: var(--ink-3); }
+  .expert-verdict { font-size: 12px; font-weight: 500; color: var(--ink); }
+  .map-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; color: var(--ink-2); text-decoration: none;
+    background: var(--surface-2); border: 0.5px solid var(--border-strong);
+    border-radius: 20px; padding: 5px 12px; white-space: nowrap;
+    transition: border-color 0.15s;
+  }
+  .map-link:hover { border-color: var(--ink-3); color: var(--ink); }
+  .map-link svg { flex-shrink: 0; }
+
+  /* ── VENUE IMAGE ── */
+  .venue-img {
+    width: calc(100% + 3.2rem);
+    margin: 0.75rem -1.6rem 1rem -1.6rem;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+  .venue-img-placeholder {
+    width: calc(100% + 3.2rem);
+    margin: 0.75rem -1.6rem 1rem -1.6rem;
+    height: 200px;
+    background: var(--surface-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 6px;
+    border-top: 0.5px solid var(--border);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .venue-img-placeholder span { font-size: 12px; color: var(--ink-4); font-style: italic; }
+  .venue-img-placeholder code { font-size: 11px; color: var(--ink-3); background: rgba(26,25,22,0.06); padding: 2px 7px; border-radius: 4px; }
+
+    /* ── GEN Z RATINGS ── */
+  .genz-row {
+    background: var(--surface); border: 0.5px solid var(--border);
+    border-radius: 14px; padding: 1rem 1.3rem; margin-bottom: 10px;
+  }
+  .genz-row-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; gap: 12px; }
+  .genz-venue-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 500; }
+  .genz-pill { font-size: 11px; font-weight: 500; padding: 3px 11px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; }
+  .genz-low { background: #FCEBEB; color: #791F1F; border: 0.5px solid #F09595; }
+  .genz-mid { background: var(--amber-light); color: var(--amber-dark); border: 0.5px solid var(--amber-border); }
+  .genz-high { background: var(--teal-light); color: var(--teal-dark); border: 0.5px solid var(--teal-border); }
+  .genz-bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .genz-track { flex: 1; height: 4px; background: var(--surface-2); border-radius: 4px; overflow: hidden; }
+  .genz-fill { height: 100%; border-radius: 4px; }
+  .genz-score { font-size: 12px; color: var(--ink-3); min-width: 36px; text-align: right; }
+  .genz-reason { font-size: 12px; color: var(--ink-2); line-height: 1.6; font-style: italic; }
+  .methodology {
+    margin-top: 1.25rem; padding: 10px 14px;
+    background: var(--surface-2); border-radius: 10px;
+    border: 0.5px solid var(--border);
+    font-size: 11px; color: var(--ink-3); font-style: italic; line-height: 1.7;
+  }
+  .methodology span { color: var(--ink-2); font-style: normal; }
+
+  /* ── HOROSCOPE ── */
+  .widget-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: 14px; overflow: hidden; }
+  .widget-top-bar {
+    background: var(--surface-2); padding: 8px 16px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .widget-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
+  .analytics-tag { font-size: 11px; color: var(--ink-3); font-style: italic; }
+  .widget-body { padding: 1.25rem 1.5rem; display: flex; gap: 1.25rem; align-items: flex-start; }
+  .sign-selector { display: flex; flex-direction: column; gap: 6px; min-width: 120px; }
+  .sign-selector label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); }
+  .sign-selector select {
+    font-size: 13px; padding: 7px 10px; border-radius: 8px;
+    border: 0.5px solid var(--border-strong); background: var(--surface-2);
+    color: var(--ink); cursor: pointer; font-family: 'DM Sans', sans-serif;
+  }
+  .horoscope-output { flex: 1; }
+  .sign-display { font-family: 'Playfair Display', serif; font-size: 17px; font-style: italic; color: var(--ink); margin-bottom: 6px; }
+  .horoscope-text { font-size: 13px; line-height: 1.7; color: var(--ink-2); min-height: 64px; }
+  .horoscope-text.muted { color: var(--ink-3); font-style: italic; }
+  .widget-footer {
+    padding: 10px 16px; border-top: 0.5px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--surface-2);
+  }
+  .powered-by { font-size: 11px; color: var(--ink-3); font-style: italic; }
+  .stakeholder-tag { font-size: 11px; color: var(--ink-3); display: flex; align-items: center; gap: 5px; }
+  .dot-amber { width: 6px; height: 6px; border-radius: 50%; background: #EF9F27; display: inline-block; }
+  .retro-row {
+    margin-top: 1rem; padding: 10px 14px;
+    background: var(--surface-2); border-radius: 10px;
+    border: 0.5px solid var(--border);
+    display: flex; align-items: flex-start; gap: 10px;
+  }
+  .retro-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); white-space: nowrap; margin-top: 1px; }
+  .retro-text { font-size: 12px; color: var(--ink-2); font-style: italic; line-height: 1.6; }
+  .sprint-badge {
+    display: inline-block; font-size: 10px; letter-spacing: 0.1em;
+    text-transform: uppercase; background: var(--amber-light); color: var(--amber-dark);
+    border: 0.5px solid var(--amber-border); padding: 3px 9px; border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+
+  /* ── FONDA SUGGESTIONS ── */
+  .add-form { display: flex; gap: 8px; align-items: flex-end; margin-bottom: 0.5rem; }
+  .url-input-wrap { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+  .field-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); }
+  input[type="text"] {
+    width: 100%; font-size: 13px; padding: 8px 12px; border-radius: 8px;
+    border: 0.5px solid var(--border-strong); background: var(--surface);
+    color: var(--ink); font-family: 'DM Sans', sans-serif;
+  }
+  input[type="text"]:focus { outline: none; border-color: var(--ink-3); }
+  .submit-btn {
+    font-size: 13px; font-family: 'DM Sans', sans-serif;
+    padding: 8px 16px; border-radius: 8px;
+    border: 0.5px solid var(--border-strong);
+    background: var(--surface-2); color: var(--ink);
+    cursor: pointer; white-space: nowrap;
+  }
+  .submit-btn:hover { background: var(--border); }
+  .submit-btn:disabled { opacity: 0.45; cursor: default; }
+  .status-msg { font-size: 12px; font-style: italic; color: var(--ink-3); min-height: 18px; margin-bottom: 0.75rem; }
+  .status-msg.error { color: var(--red); }
+  .suggestions-list { display: flex; flex-direction: column; gap: 8px; }
+  .empty-state { font-size: 13px; color: var(--ink-3); font-style: italic; padding: 0.5rem 0; }
+  .suggestion-card {
+    background: var(--surface); border: 0.5px solid var(--border);
+    border-radius: 12px; padding: 0.9rem 1.1rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .suggestion-info { flex: 1; min-width: 0; }
+  .suggestion-name { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+  .suggestion-link {
+    font-size: 11px; color: var(--ink-3);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    max-width: 340px; display: block; text-decoration: none;
+  }
+  .suggestion-link:hover { color: var(--ink-2); }
+  .suggestion-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .dog-chip-small {
+    display: flex; align-items: center; gap: 4px; padding: 3px 9px;
+    border-radius: 20px; border: 0.5px solid var(--border);
+    background: var(--surface-2); font-size: 11px; color: var(--ink-2); white-space: nowrap;
+  }
+  .maps-btn {
+    font-size: 11px; padding: 4px 10px; border-radius: 20px;
+    border: 0.5px solid var(--border); background: var(--surface-2);
+    color: var(--ink-2); text-decoration: none; white-space: nowrap;
+  }
+  .maps-btn:hover { color: var(--ink); }
+  .delete-btn { font-size: 18px; line-height: 1; color: var(--ink-3); background: none; border: none; cursor: pointer; padding: 0 2px; }
+  .delete-btn:hover { color: var(--ink); }
+
+  /* ── PAGE FOOTER ── */
+  .page-footer {
+    text-align: center; margin-top: 4rem; padding-top: 2rem;
+    border-top: 0.5px solid var(--border);
+    font-size: 12px; color: var(--ink-3); line-height: 1.8; font-style: italic;
+  }
+
+  @media (max-width: 540px) {
+    body { padding: 2rem 1rem 4rem; }
+    .widget-body { flex-direction: column; }
+    .drive-pills { align-items: flex-start; }
+    .card-header { flex-direction: column; }
+    .expert-reviews { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<div class="hero">
+  <p class="hero-tag">A Serious Proposal for Sunday</p>
+  <h1>Four Venues.<br><em>One Good Decision.</em></h1>
+  <p class="hero-sub">All assessed with the rigour your Sunday deserves. All within reach of someone willing to drive for good company.</p>
+  <p class="hero-methodology">Developed using agile methodology and principles. Fourteen sprints. Zero scope creep.</p>
+</div>
+
+<!-- ══════════════════════════════════════════
+     VENUES
+══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-label">Full lineup</div>
+    <div class="section-title">All venues considered</div>
+    <div class="section-subtitle">Central Coast originals plus midway options. Peer reviewed by two small dogs who have not visited any of them.</div>
+  </div>
+
+  <div class="section-divider">Central Coast — closer to East Gosford</div>
+
+  <div class="venue-card featured">
+    <span class="featured-badge">Recommended</span>
+    <div class="card-header">
+      <div>
+        <div class="venue-name">Kincumber Hotel</div>
+        <div class="venue-area">6 Carrak Rd, Kincumber</div>
+      </div>
+      <div class="drive-pills">
+        <span class="drive-pill pill-leichhardt">~1hr 20 from Leichhardt</span>
+        <span class="drive-pill pill-gosford">~8min from East Gosford</span>
+      </div>
+    </div>
+    <div class="hours-row">
+      <span class="hours-chip">🕙 Sunday: hotel 10am–10pm, bistro 11:30am–8pm</span>
+    </div>
+    <!-- Add your image: place kincumber.jpg in an images/ folder next to this file -->
+    <img class="venue-img" src="images/kincumber.jpg" alt="Kincumber Hotel" onerror="this.outerHTML='<div class=&quot;venue-img-placeholder&quot;><span>Add a photo of Kincumber Hotel</span><code>images/kincumber.jpg</code></div>'" />
+    <p class="card-pitch">"Known as Kinny Pub since 1976. Pool tables, live music on Sundays, craft beer bar called The Hairy Goat, and a beer garden with actual ducks roaming around. The ducks are not metaphorical."</p>
+    <div class="card-facts">
+      <span class="chip chip-pool">🎱 Pool tables confirmed</span>
+      <span class="chip chip-vibe">🎵 Live music Sundays</span>
+      <span class="chip chip-food">🍺 The Hairy Goat craft bar</span>
+      <span class="chip chip-food">🍔 Pub classics</span>
+      <span class="chip chip-vibe">🦆 Beer garden + ducks</span>
+    </div>
+    <div class="card-footer">
+      <div class="expert-panel">
+        <div class="expert-label">Critical consensus</div>
+        <div class="expert-reviews">
+          <div class="expert-review"><span class="expert-dog">🐶</span><div class="expert-meta"><span class="expert-dog-name">Roo, Silky Terrier</span><span class="expert-verdict">Woof</span></div></div>
+          <div class="expert-review"><span class="expert-dog">🐾</span><div class="expert-meta"><span class="expert-dog-name">Hunter, Westie</span><span class="expert-verdict">Woof</span></div></div>
+        </div>
+      </div>
+      <a class="map-link" href="https://maps.google.com/?q=Kincumber+Hotel+6+Carrak+Rd+Kincumber+NSW" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#EA4335"/></svg>View on Google Maps</a>
+    </div>
+  </div>
+
+  <div class="venue-card">
+    <div class="card-header">
+      <div>
+        <div class="venue-name">Bar Botanica</div>
+        <div class="venue-area">25 Portsmouth Rd, Erina</div>
+      </div>
+      <div class="drive-pills">
+        <span class="drive-pill pill-leichhardt">~1hr 20 from Leichhardt</span>
+        <span class="drive-pill pill-gosford">~12min from East Gosford</span>
+      </div>
+    </div>
+    <div class="hours-row">
+      <span class="hours-chip">🕙 Sunday: 10am–5pm</span>
+      <span class="hours-note">walk-ins only, no bookings</span>
+    </div>
+    <!-- Add your image: place botanica.jpg in an images/ folder next to this file -->
+    <img class="venue-img" src="images/botanica.jpg" alt="Bar Botanica" onerror="this.outerHTML='<div class=&quot;venue-img-placeholder&quot;><span>Add a photo of Bar Botanica</span><code>images/botanica.jpg</code></div>'" />
+    <p class="card-pitch">"A mud-brick cocktail bar in a three-acre gin garden, with live jazz on Sundays from 1pm. You wander in through the botanicals, try an award-winning gin, and pretend you knew about it all along."</p>
+    <div class="card-facts">
+      <span class="chip chip-vibe">🎷 Live jazz Sundays 1pm</span>
+      <span class="chip chip-vibe">🌿 Garden cocktail bar</span>
+      <span class="chip chip-food">🍳 Brunch + lunch menu</span>
+      <span class="chip chip-food">🍸 Gin tastings from $5</span>
+      <span class="chip chip-vibe">🐕 Dog-friendly</span>
+    </div>
+    <div class="card-footer">
+      <div class="expert-panel">
+        <div class="expert-label">Critical consensus</div>
+        <div class="expert-reviews">
+          <div class="expert-review"><span class="expert-dog">🐶</span><div class="expert-meta"><span class="expert-dog-name">Roo, Silky Terrier</span><span class="expert-verdict">Woof</span></div></div>
+          <div class="expert-review"><span class="expert-dog">🐾</span><div class="expert-meta"><span class="expert-dog-name">Hunter, Westie</span><span class="expert-verdict">Woof</span></div></div>
+        </div>
+      </div>
+      <a class="map-link" href="https://maps.google.com/?q=Distillery+Botanica+25+Portsmouth+Rd+Erina+NSW" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#EA4335"/></svg>View on Google Maps</a>
+    </div>
+  </div>
+
+  <div class="section-divider">Midway — splitting the difference</div>
+
+  <div class="venue-card featured">
+    <span class="featured-badge">Scenic detour</span>
+    <div class="card-header">
+      <div>
+        <div class="venue-name">Boathouse Hotel Patonga</div>
+        <div class="venue-area">6–8 Patonga Dr, Patonga</div>
+      </div>
+      <div class="drive-pills">
+        <span class="drive-pill pill-leichhardt">~1hr from Leichhardt</span>
+        <span class="drive-pill pill-gosford">~40min from East Gosford</span>
+      </div>
+    </div>
+    <div class="hours-row">
+      <span class="hours-chip">🕙 Sunday: 11am–late</span>
+      <span class="hours-note">no bookings taken</span>
+    </div>
+    <!-- Add your image: place patonga.jpg in an images/ folder next to this file -->
+    <img class="venue-img" src="images/patonga.jpg" alt="Boathouse Hotel Patonga" onerror="this.outerHTML='<div class=&quot;venue-img-placeholder&quot;><span>Add a photo of Boathouse Hotel Patonga</span><code>images/patonga.jpg</code></div>'" />
+    <p class="card-pitch">"A coastal pub at the mouth of the Hawkesbury, surrounded by national park on three sides. Accessible by car via a winding road through Brisbane Water, or by ferry from Palm Beach. Live music on Sundays, seafood menu, outdoor deck with views."</p>
+    <div class="card-facts">
+      <span class="chip chip-water">🌊 Hawkesbury River views</span>
+      <span class="chip chip-vibe">🎵 Live music Sundays</span>
+      <span class="chip chip-food">🦐 Seafood + cocktails</span>
+      <span class="chip chip-vibe">⛴️ Palm Beach ferry option</span>
+      <span class="chip chip-food">☀️ Outdoor terrace</span>
+    </div>
+    <div class="card-footer">
+      <div class="expert-panel">
+        <div class="expert-label">Critical consensus</div>
+        <div class="expert-reviews">
+          <div class="expert-review"><span class="expert-dog">🐶</span><div class="expert-meta"><span class="expert-dog-name">Roo, Silky Terrier</span><span class="expert-verdict">Woof</span></div></div>
+          <div class="expert-review"><span class="expert-dog">🐾</span><div class="expert-meta"><span class="expert-dog-name">Hunter, Westie</span><span class="expert-verdict">Woof</span></div></div>
+        </div>
+      </div>
+      <a class="map-link" href="https://maps.google.com/?q=Boathouse+Hotel+Patonga+NSW" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#EA4335"/></svg>View on Google Maps</a>
+    </div>
+  </div>
+
+  <div class="venue-card">
+    <div class="card-header">
+      <div>
+        <div class="venue-name">The Greengate Hotel</div>
+        <div class="venue-area">655 Pacific Hwy, Killara</div>
+      </div>
+      <div class="drive-pills">
+        <span class="drive-pill pill-leichhardt">~30min from Leichhardt</span>
+        <span class="drive-pill pill-gosford">~45min from East Gosford</span>
+      </div>
+    </div>
+    <div class="hours-row">
+      <span class="hours-chip">🕙 Sunday: 11am–10pm</span>
+      <span class="hours-note">10% Sunday surcharge applies</span>
+    </div>
+    <!-- Add your image: place greengate.jpg in an images/ folder next to this file -->
+    <img class="venue-img" src="images/greengate.jpg" alt="The Greengate Hotel" onerror="this.outerHTML='<div class=&quot;venue-img-placeholder&quot;><span>Add a photo of The Greengate Hotel</span><code>images/greengate.jpg</code></div>'" />
+    <p class="card-pitch">"A solid North Shore pub with a terrace, a menu that takes itself seriously (pork belly, wagyu corned silverside, tacos), dog-friendly outdoor courtyard, and a cocktail list that doesn't apologise for existing."</p>
+    <div class="card-facts">
+      <span class="chip chip-vibe">🌳 Terrace + beer garden</span>
+      <span class="chip chip-food">🍽️ Modern pub menu</span>
+      <span class="chip chip-food">🍹 Cocktails + craft beer</span>
+      <span class="chip chip-vibe">🐕 Dog-friendly outdoors</span>
+    </div>
+    <div class="card-footer">
+      <div class="expert-panel">
+        <div class="expert-label">Critical consensus</div>
+        <div class="expert-reviews">
+          <div class="expert-review"><span class="expert-dog">🐶</span><div class="expert-meta"><span class="expert-dog-name">Roo, Silky Terrier</span><span class="expert-verdict">Woof</span></div></div>
+          <div class="expert-review"><span class="expert-dog">🐾</span><div class="expert-meta"><span class="expert-dog-name">Hunter, Westie</span><span class="expert-verdict">Woof</span></div></div>
+        </div>
+      </div>
+      <a class="map-link" href="https://maps.google.com/?q=Greengate+Hotel+655+Pacific+Highway+Killara+NSW" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#EA4335"/></svg>View on Google Maps</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     GEN Z RATINGS
+══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title">Gen Z encounter probability</div>
+    <div class="section-subtitle">Likelihood of encountering someone filming a reel, describing the venue as "lowkey", or ordering a mocktail unironically. Scored out of 100.</div>
+  </div>
+
+  <div class="genz-row">
+    <div class="genz-row-header">
+      <div class="genz-venue-name">Kincumber Hotel</div>
+      <span class="genz-pill genz-low">Not a chance</span>
+    </div>
+    <div class="genz-bar-row">
+      <div class="genz-track"><div class="genz-fill" style="width:8%;background:#E24B4A;"></div></div>
+      <span class="genz-score">8/100</span>
+    </div>
+    <div class="genz-reason">A pub that has been called "Kinny Pub" since 1976 and has ducks is structurally immune to Gen Z. Any who arrive by accident leave immediately upon seeing a TAB.</div>
+  </div>
+
+  <div class="genz-row">
+    <div class="genz-row-header">
+      <div class="genz-venue-name">Bar Botanica</div>
+      <span class="genz-pill genz-high">High exposure</span>
+    </div>
+    <div class="genz-bar-row">
+      <div class="genz-track"><div class="genz-fill" style="width:81%;background:#639922;"></div></div>
+      <span class="genz-score">81/100</span>
+    </div>
+    <div class="genz-reason">Botanical garden. Mud-brick hut. Craft gin. Live jazz. This is a Pinterest board that became real. Someone will be doing a "day in my life" video whether you like it or not.</div>
+  </div>
+
+  <div class="genz-row">
+    <div class="genz-row-header">
+      <div class="genz-venue-name">Boathouse Hotel Patonga</div>
+      <span class="genz-pill genz-mid">Elevated risk</span>
+    </div>
+    <div class="genz-bar-row">
+      <div class="genz-track"><div class="genz-fill" style="width:67%;background:#EF9F27;"></div></div>
+      <span class="genz-score">67/100</span>
+    </div>
+    <div class="genz-reason">Waterfront + cocktails + the word "wharf" = guaranteed coastal grandmother aesthetic content. Expect at least one person narrating their prawn linguine to camera.</div>
+  </div>
+
+  <div class="genz-row">
+    <div class="genz-row-header">
+      <div class="genz-venue-name">The Greengate Hotel</div>
+      <span class="genz-pill genz-mid">Moderate risk</span>
+    </div>
+    <div class="genz-bar-row">
+      <div class="genz-track"><div class="genz-fill" style="width:38%;background:#EF9F27;"></div></div>
+      <span class="genz-score">38/100</span>
+    </div>
+    <div class="genz-reason">The Pacific Highway address keeps most of them away. The cocktail menu is a mild risk factor. Net result: manageable.</div>
+  </div>
+
+  <div class="methodology">
+    Methodology: scores derived from a proprietary index of plantable backdrops, menu words ending in "-ata" or "-ito", proximity to a coastal aesthetic, and whether the venue could plausibly feature in a "things to do on the Central Coast" reel. A 12-point bonus is applied to any venue where the seating requires getting up from a low surface without incident, on the basis that Gen Z can do this freely and without consequence, which is one of several <span>superior thoracic mobility</span> advantages they hold over the two people who made this page, both of whom are 40 and have opinions about mobility generally. Peer reviewed by no one. Confidence interval: vibes.
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     HOROSCOPE
+══════════════════════════════════════════ -->
+<div class="section">
+  <span class="sprint-badge">Added mid-sprint</span>
+  <div class="section-header" style="margin-top:0.5rem;">
+    <div class="section-title">Also: a horoscope widget</div>
+    <div class="section-subtitle">Requested by a stakeholder. Not on the roadmap. No user research supports it. Shipped anyway. You know how it goes.</div>
+  </div>
+
+  <div class="widget-card">
+    <div class="widget-top-bar">
+      <span class="widget-label">Your Daily Horoscope</span>
+      <span class="analytics-tag">0 clicks in 3 sprints</span>
+    </div>
+    <div class="widget-body">
+      <div class="sign-selector">
+        <label>Your sign</label>
+        <select id="sign-select" onchange="updateHoroscope()">
+          <option value="">Select...</option>
+          <option value="aries">Aries</option>
+          <option value="taurus">Taurus</option>
+          <option value="gemini">Gemini</option>
+          <option value="cancer">Cancer</option>
+          <option value="leo">Leo</option>
+          <option value="virgo">Virgo</option>
+          <option value="libra">Libra</option>
+          <option value="scorpio">Scorpio</option>
+          <option value="sagittarius">Sagittarius</option>
+          <option value="capricorn">Capricorn</option>
+          <option value="aquarius">Aquarius</option>
+          <option value="pisces">Pisces</option>
+        </select>
+      </div>
+      <div class="horoscope-output">
+        <div class="sign-display" id="sign-display">Select your sign</div>
+        <div class="horoscope-text muted" id="horoscope-text">The stars await your input. So does a half-decent Sunday plan, which is probably more useful.</div>
+      </div>
+    </div>
+    <div class="widget-footer">
+      <span class="powered-by">Powered by vibes and a $4,000 sprint</span>
+      <span class="stakeholder-tag"><span class="dot-amber"></span> Approved by senior leadership</span>
+    </div>
+  </div>
+
+  <div class="retro-row">
+    <span class="retro-label">Retro note</span>
+    <span class="retro-text">"We should discuss whether horoscope content aligns with our product vision." — raised, parked, closed as out of scope for this quarter.</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     FONDA'S SUGGESTIONS
+══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title">Fonda's suggestions</div>
+    <div class="section-subtitle">Paste a Google Maps link below. The rest will sort itself out. Your suggestions persist across sessions.</div>
+  </div>
+
+  <div class="add-form">
+    <div class="url-input-wrap">
+      <label class="field-label">Google Maps link</label>
+      <input type="text" id="venue-url" placeholder="https://maps.google.com/..." />
+    </div>
+    <button class="submit-btn" id="submit-btn" onclick="addSuggestion()">Add ↗</button>
+  </div>
+  <div class="status-msg" id="status-msg"></div>
+  <div class="suggestions-list" id="suggestions-list">
+    <div class="empty-state">No suggestions yet. The floor is yours.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE FOOTER
+══════════════════════════════════════════ -->
+<div class="page-footer">
+  All options are daytime-appropriate, food-capable, and within reach.<br>
+  Roo and Hunter have reviewed all venues without visiting any of them,<br>which maintains the methodological consistency established elsewhere on this page.
+</div>
+
+<!-- ══════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════ -->
+<script>
+// ── HOROSCOPE ──────────────────────────────
+const horoscopes = {
+  aries: "A bold journey lies ahead — specifically, the M1 northbound. Mercury is in retrograde, but the road conditions look fine. Say yes to the thing that sounds slightly impractical.",
+  taurus: "You crave comfort and quality. A pub with 32 taps is basically a spiritual experience for you. Avoid people who describe themselves as 'low-key' while having strong opinions about everything.",
+  gemini: "Your duality is your strength. You will want to suggest two venues simultaneously. This is fine. Pick one anyway. The stars support decisiveness this Sunday, for once.",
+  cancer: "You lead with feeling. The fact that someone put effort into a landing page for a second date will not be lost on you. The waterfront option calls to your soul. Trust it.",
+  leo: "You deserve a venue that matches your energy. A heritage Art Deco pub with 32 taps and seven types of margarita is essentially your natural habitat. Walk in like you've been there before.",
+  virgo: "You have already googled all four options, read the Google reviews, and formed a spreadsheet. The stars advise you to close the spreadsheet. The vibe cannot be optimised, only experienced.",
+  libra: "You will spend forty minutes deciding and then choose whichever one someone else suggests. The stars are tired of this. Pick the one with live jazz. It was always going to be that one.",
+  scorpio: "You are drawn to places with history and atmosphere. The 1926 heritage pub is calling you. Also, pool is basically a power dynamic dressed as leisure, which suits you perfectly.",
+  sagittarius: "Adventure is your currency. A gin distillery in a botanical garden is technically an adventure if you've never been. The stars suggest you act like it wasn't carefully researched beforehand.",
+  capricorn: "You appreciate things that have stood the test of time. A pub since 1976 with live music and actual ducks commands your respect. Efficiency-wise, pool is also a productive use of an afternoon.",
+  aquarius: "You reject the conventional. Which is ironic, because a second date to a pub is extremely conventional. The stars forgive you. Order something no one else is ordering and feel fine about it.",
+  pisces: "You are romantic and intuitive. The garden bar with jazz was always the answer. You knew this before you read it. You were just waiting for the universe to confirm it."
+};
+
+function updateHoroscope() {
+  const sign = document.getElementById('sign-select').value;
+  const display = document.getElementById('sign-display');
+  const text = document.getElementById('horoscope-text');
+  if (!sign) {
+    display.textContent = 'Select your sign';
+    text.textContent = 'The stars await your input. So does a half-decent Sunday plan, which is probably more useful.';
+    text.classList.add('muted');
+    return;
+  }
+  const names = { aries:'Aries',taurus:'Taurus',gemini:'Gemini',cancer:'Cancer',leo:'Leo',virgo:'Virgo',libra:'Libra',scorpio:'Scorpio',sagittarius:'Sagittarius',capricorn:'Capricorn',aquarius:'Aquarius',pisces:'Pisces' };
+  display.textContent = names[sign];
+  text.textContent = horoscopes[sign];
+  text.classList.remove('muted');
+}
+
+// ── FONDA'S SUGGESTIONS ───────────────────
+const STORAGE_KEY = 'fonda-venue-suggestions-v2';
+
+function loadSuggestions() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch { return []; }
+}
+
+function saveSuggestions(suggestions) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(suggestions));
+}
+
+function extractNameFromUrl(url) {
+  try {
+    const placeMatch = url.match(/\/maps\/place\/([^/@?]+)/);
+    if (placeMatch) return decodeURIComponent(placeMatch[1].replace(/\+/g, ' ')).replace(/@[\d.,-z]+$/, '').trim();
+    const qMatch = url.match(/[?&]q=([^&]+)/);
+    if (qMatch) return decodeURIComponent(qMatch[1].replace(/\+/g, ' ')).trim();
+  } catch {}
+  return null;
+}
+
+function setStatus(msg, isError) {
+  const el = document.getElementById('status-msg');
+  el.textContent = msg;
+  el.className = 'status-msg' + (isError ? ' error' : '');
+}
+
+function addSuggestion() {
+  const urlInput = document.getElementById('venue-url');
+  const btn = document.getElementById('submit-btn');
+  const url = urlInput.value.trim();
+
+  if (!url) { setStatus('Paste a Google Maps link to get started.', true); return; }
+  if (!url.startsWith('http')) { setStatus("That doesn't look like a valid link.", true); return; }
+
+  let name = extractNameFromUrl(url);
+  if (!name || name.length < 3) name = 'Suggested venue';
+
+  const suggestions = loadSuggestions();
+  suggestions.push({ id: Date.now(), name, url });
+  saveSuggestions(suggestions);
+
+  urlInput.value = '';
+  setStatus('', false);
+  renderSuggestions(suggestions);
+}
+
+function deleteSuggestion(id) {
+  const updated = loadSuggestions().filter(s => s.id !== id);
+  saveSuggestions(updated);
+  renderSuggestions(updated);
+}
+
+function renderSuggestions(suggestions) {
+  const list = document.getElementById('suggestions-list');
+  if (!suggestions.length) {
+    list.innerHTML = '<div class="empty-state">No suggestions yet. The floor is yours.</div>';
+    return;
+  }
+  list.innerHTML = suggestions.map(s => `
+    <div class="suggestion-card">
+      <div class="suggestion-info">
+        <div class="suggestion-name">${s.name}</div>
+        <a class="suggestion-link" href="${s.url}" target="_blank">${s.url}</a>
+      </div>
+      <div class="suggestion-actions">
+        <span class="dog-chip-small">🐶 Woof &nbsp;🐾 Woof</span>
+        <a class="maps-btn" href="${s.url}" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#EA4335"/></svg>View on Google Maps</a>
+        <button class="delete-btn" onclick="deleteSuggestion(${s.id})">×</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+renderSuggestions(loadSuggestions());
+</script>
+</body>
+</html>
